@@ -5,7 +5,6 @@ from typing import Dict
 
 router = APIRouter()
 items: Dict[int, Item] = {}
-item_id_counter = 0
 
 @router.post('/item', status_code=status.HTTP_201_CREATED)
 def create_item(
@@ -32,7 +31,7 @@ def get_item_by_id(
 @router.get('/item')
 def get_item(
     offset: int = Query(0, ge=0),
-    limit: int = Query(10, gt=0),
+    limit: int = Query(20, gt=0),
     min_price: float | None = Query(None, ge=0),
     max_price: float | None = Query(None, ge=0),
     show_deleted: bool = Query(False)
@@ -53,7 +52,10 @@ def put_item_by_id(
     new_item: NewItem
 ):
     if id not in items.keys():
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Item does not exist. Only replacement allowed for existing items')
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Item does not exist. Only replacement allowed for existing items'
+            )
     item = items[id]
     item.name = new_item.name
     item.price = new_item.price
@@ -65,7 +67,10 @@ def patch_item_by_id(
     update_item: UpdateItem
 ):
     if id not in items:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Item does not exist. Only replacement allowed for existing items')
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Item does not exist. Only replacement allowed for existing items'
+            )
     item = items[id]
     if item.deleted:
         raise HTTPException(status_code=status.HTTP_304_NOT_MODIFIED, detail='Item deleted')

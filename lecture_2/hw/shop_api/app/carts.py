@@ -7,7 +7,6 @@ from typing import Dict
 
 router = APIRouter()
 carts: Dict[int, Cart] = {}
-cart_id_counter = 0
 
 @router.post('/cart', status_code=status.HTTP_201_CREATED)
 def create_cart(
