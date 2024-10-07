@@ -5,7 +5,6 @@ from typing import Dict
 
 router = APIRouter()
 items: Dict[int, Item] = {}
-item_id_counter = 0
 
 @router.post('/item', status_code=status.HTTP_201_CREATED)
 def create_item(
