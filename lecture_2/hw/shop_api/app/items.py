@@ -53,7 +53,10 @@ def put_item_by_id(
     new_item: NewItem
 ):
     if id not in items.keys():
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Item does not exist. Only replacement allowed for existing items')
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Item does not exist. Only replacement allowed for existing items'
+            )
     item = items[id]
     item.name = new_item.name
     item.price = new_item.price
@@ -65,7 +68,10 @@ def patch_item_by_id(
     update_item: UpdateItem
 ):
     if id not in items:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Item does not exist. Only replacement allowed for existing items')
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Item does not exist. Only replacement allowed for existing items'
+            )
     item = items[id]
     if item.deleted:
         raise HTTPException(status_code=status.HTTP_304_NOT_MODIFIED, detail='Item deleted')
