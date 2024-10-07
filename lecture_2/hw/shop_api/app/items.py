@@ -31,7 +31,7 @@ def get_item_by_id(
 @router.get('/item')
 def get_item(
     offset: int = Query(0, ge=0),
-    limit: int = Query(10, gt=0),
+    limit: int = Query(20, gt=0),
     min_price: float | None = Query(None, ge=0),
     max_price: float | None = Query(None, ge=0),
     show_deleted: bool = Query(False)

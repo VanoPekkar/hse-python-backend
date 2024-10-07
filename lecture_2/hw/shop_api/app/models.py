@@ -1,5 +1,5 @@
 
-from pydantic import BaseModel, confloat, conint
+from pydantic import BaseModel
 from typing import List, Optional
 
 class UpdateItem(BaseModel):
